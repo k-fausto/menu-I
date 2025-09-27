@@ -136,3 +136,13 @@ int main(void) {
 
     return 0;
 }
+
+/**
+ * Para los resultados de la graficación de estas aproximaciones de pi, en todos los casos se puede observar un descenso original del error,
+ * para que luego este error relativo vuelva a subir, incluso siendo peor que el original en el caso de Sk simple.
+ * Esto ocurre por la acumulación del error relativo, cada vez la fórmula se calcula para valores más pequeños, es decir, 
+ * la raíz de la raíz de la raíz ... de cuatro menos dos eventualmente causa un error de cancelación.
+ * 
+ * Al contrario, la fórmula mejorada, como se puede comprobar en el gráfico de GNUPLOT, llega a un error relativo de 0%.
+ * Esto es porque en ningún momento se incurre en cancelación.
+ */
