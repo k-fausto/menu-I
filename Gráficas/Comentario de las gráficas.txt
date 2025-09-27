@@ -1,0 +1,3 @@
+
+Se observan los resultados esperados.
+Las aproximaciones con precisión doble tienen un error relativo menor que la precisión simple.
