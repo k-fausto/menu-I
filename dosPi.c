@@ -2,13 +2,19 @@
 #include <math.h>
 
 int main(void) {
-    // Haremos t comprobaciones.
+    /* Haremos t comprobaciones.*/
     int t = 28;
+
+    float acosf(float);
+    float sqrtf(float);
+    float powf(float, float);
+    float fabsf(float);
     
     float PI = acosf(-1.0);
     double d_PI = acos(-1.0);
+    int i = 3;
 
-    // Creemos el archivo que gnuplot leerá.
+    /*Creemos el archivo que gnuplot leerá.*/
 
     FILE *f1, *f2, *f3, *f4, *f5;
     f1 = fopen("Sk_simple.dat", "w");
@@ -28,7 +34,7 @@ int main(void) {
     printf("||\tAproximacion de dos veces pi usando sk, y precision simple.\n");
     printf("============================================================================\n");
 
-    for (int i = 3; i <= t ; i++) {
+    for (i = 3; i <= t ; i++) {
         k = pow(2,i);
         sk_1 = sqrtf(2 - sqrtf(4 - powf(sk_0, 2)));
         er = fabsf((sk_1 * k - 2 * PI) / (2 * PI)); 
@@ -51,7 +57,7 @@ int main(void) {
     double d_sk_0, d_sk_1, d_er;
     d_sk_0 = sqrt(2);
 
-    for (int i = 3; i <= t ; i++) {
+    for (i = 3; i <= t ; i++) {
         k = pow(2,i);
         d_sk_1 = sqrt(2 - sqrt(4 - pow(d_sk_0, 2)));
         d_er = fabs((d_sk_1 * k - 2 * d_PI) / (2 * d_PI));
@@ -74,7 +80,7 @@ int main(void) {
     printf("||\tAproximacion de dos veces pi usando ck, y precision simple.\n");
     printf("============================================================================\n");
     
-    for (int i = 3; i <= t ; i++) {
+    for (i = 3; i <= t ; i++) {
         k = pow(2,i);
         sk_1 = sqrtf(2 - sqrtf(4 - powf(sk_0, 2)));
         
@@ -99,7 +105,7 @@ int main(void) {
     double d_ck;
     d_sk_0 = sqrt(2);
     
-    for (int i = 3; i <= t ; i++) {
+    for (i = 3; i <= t ; i++) {
         k = pow(2,i);
         d_sk_1 = sqrt(2 - sqrt(4 - pow(d_sk_0, 2)));
         d_er = fabs((d_ck * k - 2 * d_PI) / (2 * d_PI)); 
@@ -111,13 +117,13 @@ int main(void) {
     }
     printf("============================================================================\n\n");
 
-    // Con sk mejorado.
+    /*Con sk mejorado.*/
     printf("============================================================================\n");
     printf("||\tAproximacion de dos veces pi usando sk sin cancelacion, y precision doble.\n");
     printf("============================================================================\n");
 
     double sk = 0.0;
-    for (int i = 2; i <= t; i++) {
+    for (i = 2; i <= t; i++) {
         k = pow(2,i);
         sk = 2.0 * sin(d_PI/k);
         d_er = fabs((sk * k - 2.0 * d_PI) / (2.0 * d_PI)); 
