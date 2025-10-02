@@ -108,8 +108,8 @@ int main(void) {
     for (i = 3; i <= t ; i++) {
         k = pow(2,i);
         d_sk_1 = sqrt(2 - sqrt(4 - pow(d_sk_0, 2)));
-        d_er = fabs((d_ck * k - 2 * d_PI) / (2 * d_PI)); 
         d_ck = (2*d_sk_1)/(sqrt(4-pow(d_sk_1, 2)));
+        d_er = fabs((d_ck * k - 2 * d_PI) / (2 * d_PI)); 
         
         printf("||\tNumero de vertices: %7d \t ||\tValor de la aproximacion: %.20le \t || \tError relativo: %.20le%%.\n", k/2, d_sk_1 * k, d_er * 100);
         d_sk_0 = d_sk_1;
