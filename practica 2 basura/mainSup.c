@@ -14,7 +14,7 @@ int main(void) {
      */
     const double PI = acos(-1.0);
     double theta = 1.0, s = 0.0, c = 0.0;
-    int n = 800, i = 0, j = 0;
+    int n = 3, i = 0, j = 0;
 
     /*
     
@@ -55,6 +55,7 @@ int main(void) {
             for (j = 0; j < n; j++) {
 
                 K[i][j] = 1;
+                if (i > j) K[i][j] = 0;
                 if (i < j) K[i][j] *= -c;
                 K[i][j] *= temp_s; 
 
@@ -63,6 +64,7 @@ int main(void) {
         }
 
         /* Printear la matrix si queremos.
+        */
         printf("\nMatrix Kn(theta):\n");
         for (i = 0; i < n; i++) {
             for (j = 0; j < n; j++) {
@@ -70,7 +72,6 @@ int main(void) {
             }
             printf("\n");
         }
-            */
 
         /**
          * Calculamos el tiempo de ejecución.
@@ -80,9 +81,9 @@ int main(void) {
 
         if (solution != NULL) {
             /*
+            */
             printf("SOLUCIOOOOOOOOON -------------------------------------\n");
             for (j = 0; j < n; j++) printf("%8.4le ", solution[j]);
-            */
             free(solution); 
         }
 
@@ -96,6 +97,25 @@ int main(void) {
 
         double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
         printf("La solucion tardo: %le segundos en ejecutarse.\n", time_spent);
+
+        /* Prueba de que funciona. -----> Checked. 
+        double e_prueba[3] = {1, 3, -1};
+        double mat_prueba[3][3] = {{3, 1, 2}, {0, -1, 1}, {0, 0, 2}};
+
+        double *mat_ptrs[3];
+        for (i = 0; i < 3; i++) {
+            mat_ptrs[i] = mat_prueba[i]; 
+        }
+
+        double *solution_prueba = triangSup(3, mat_ptrs, e_prueba);
+
+        if (solution_prueba != NULL) {
+            
+            printf("SOLUCIOOOOOOOOON -------------------------------------\n");
+            for (j = 0; j < n; j++) printf("%8.4le ", solution_prueba[j]);
+            free(solution_prueba); 
+        }
+        */
 
     }
 
