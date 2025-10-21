@@ -14,7 +14,7 @@ double * triangSup (int n , double ** matU , double *b) {
     for (i = n-1; i >= 0; i--) {
 
         /**
-         * Sumamos todos los elementos a la derecha de aii * xii con sus respectivas solcuiones, y luego lo pasamos restando, 
+         * Sumamos todos los elementos a la derecha de aii * xii con sus respectivas soluciones, y luego lo pasamos restando, 
          * para dividirlo entre el coeficiente de xi.
          */
         for (j = n-1; j > i; j--) temp += x[j] * matU[i][j];

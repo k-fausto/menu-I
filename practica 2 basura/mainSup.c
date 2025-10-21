@@ -13,8 +13,9 @@ int main(void) {
      * Inicializamos variables y obtenemos los valores deseados, comprobando que sean correctos.
      */
     const double PI = acos(-1.0);
-    double theta = 1.0, s = 0.0, c = 0.0;
-    int n = 50, i = 0, j = 0;
+    double theta = 1.0, s = 0.0, c = 0.0, cpu_time_spent;
+    clock_t start, end;
+    int n = 800, i = 0, j = 0;
     FILE *fptr;
     fptr = fopen("time.dat", "w");
 
@@ -40,7 +41,8 @@ int main(void) {
             s = sin(theta);
             c = cos(theta);
             
-            double **K = malloc(n * sizeof(double*));
+            double **K = calloc(n, sizeof(double*));
+            if (K == NULL) { perror("Calloc matriu K"); return 1;}
             double e[n];
             double temp_s = 1;
             
@@ -51,13 +53,13 @@ int main(void) {
              * en los triangulares inferiores.
              */
             for (i = 0; i < n; i++) {
-                K[i] = malloc(n * sizeof(double));
+                K[i] = calloc(n, sizeof(double));
+                if (K[i] == NULL) { perror("Calloc fila de matriu K"); return 1;}
                 e[i] = 0;
                 if (i == n-1) e[i] = 1;
                 for (j = 0; j < n; j++) {
     
                     K[i][j] = 1;
-                    if (i > j) K[i][j] = 0;
                     if (i < j) K[i][j] *= -c;
                     K[i][j] *= temp_s; 
     
@@ -78,7 +80,7 @@ int main(void) {
             /**
              * Calculamos el tiempo de ejecución.
              */
-            clock_t begin = clock();
+            start = clock();
             double *solution = triangSup(n, K, e);
     
             /* Descomentar para comprobar la solución.
@@ -90,7 +92,7 @@ int main(void) {
             }
             */
                
-            clock_t end = clock();
+            end = clock();
             free(solution); 
     
     
@@ -100,8 +102,8 @@ int main(void) {
     
             /* Mostramos por pantalla el tiempo de ejecución. */
     
-            double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
-            fprintf(fptr, "%.30le %.30le\n", theta, time_spent);
+            cpu_time_spent = ((double) (end - start)) / CLOCKS_PER_SEC;
+            fprintf(fptr, "%.30le %.30\n", theta, cpu_time_spent);
             /*printf("La solucion tardo: %le segundos en ejecutarse.\n", time_spent);*/
     
             /* Prueba de que funciona. -----> Checked. 
