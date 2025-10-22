@@ -28,4 +28,6 @@
 
   int elimGaus (int n , double **a , double *b , double tol ) {
     
+    
+
   }

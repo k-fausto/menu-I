@@ -15,7 +15,7 @@ int main(void) {
     const double PI = acos(-1.0);
     double theta = 1.0, s = 0.0, c = 0.0, cpu_time_spent;
     clock_t start, end;
-    int n = 800, i = 0, j = 0;
+    int n = 3200, i = 0, j = 0;
     FILE *fptr;
     fptr = fopen("time.dat", "w");
 
@@ -103,8 +103,8 @@ int main(void) {
             /* Mostramos por pantalla el tiempo de ejecución. */
     
             cpu_time_spent = ((double) (end - start)) / CLOCKS_PER_SEC;
-            fprintf(fptr, "%.30le %.30\n", theta, cpu_time_spent);
-            /*printf("La solucion tardo: %le segundos en ejecutarse.\n", time_spent);*/
+            fprintf(fptr, "%.30le %.30le\n", theta, cpu_time_spent);
+            /*printf("La solucion tardo: %le segundos en ejecutarse.\n", cpu_time_spent);*/
     
             /* Prueba de que funciona. -----> Checked. 
             double e_prueba[3] = {1, 3, -1};
