@@ -57,11 +57,11 @@ int elimGaus (int n , double **a , double *b , double tol ) {
 
     for (j = i+1; j < n; j++) { /* Acedo a las fila j por debajo de la fila i. */
       
-      m_i = -(a[i][i])/(a[j][i]);
+      m_i = -(a[j][i])/(a[i][i]);
       
       /* Accedo a cada elemento l de la fila j y lo actualizo. */
-      for (l = i+1; l < n; l++) {a[j][l] = m_i * a[j][l] + a[i][l];
-      b[j] = m_i * b[j] + b[i];
+      for (l = i+1; l < n; l++) {a[j][l] = a[j][l] + m_i * a[i][l];
+      b[j] = b[j] + m_i * b[i];
         
       }
 

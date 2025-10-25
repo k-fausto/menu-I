@@ -2,10 +2,12 @@
  * Karim Boujana Marcucci.
  */
 
-#include "triang.c"
+#include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
 #include <time.h>
+
+double *triangSup (int n , double ** matU , double *b);
 
 int main(void) {
 
