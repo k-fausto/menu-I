@@ -3,26 +3,37 @@
  */
 
  #include <stdlib.h>
+ #include <math.h>
 
-double * triangSup (int n , double ** matU , double *b) {
+double *triangSup(int n, double **matU, double *b) {
     
-    /*Inicializo el vector que retornameros, una variable temporal y los indices.*/
+    /* Inicializamos el vector solución y variables temporales */
     double *x = malloc(n * sizeof(double));
-    double temp = 0.0;
+    double temp;
     int i, j;
 
-    for (i = n-1; i >= 0; i--) {
-
+    /* Resolvemos desde la última ecuación hasta la primera */
+    for (i = n - 1; i >= 0; i--) {
+        temp = 0.0;
+        
         /**
-         * Sumamos todos los elementos a la derecha de aii * xii con sus respectivas soluciones, y luego lo pasamos restando, 
-         * para dividirlo entre el coeficiente de xi.
+         * Sumamos todos los términos a la derecha del elemento diagonal:
+         * temp = Σ (matU[i][j] * x[j]) para j desde i+1 hasta n-1
          */
-        for (j = n-1; j > i; j--) temp += x[j] * matU[i][j];
+        for (j = i + 1; j < n; j++) {
+            temp += matU[i][j] * x[j];
+        }
+        
+        /* Verificamos que el elemento diagonal no sea cero */
+        if (fabs(matU[i][i]) < 1e-15) {
+            free(x);
+            return NULL;  /* Matriz singular */
+        }
+        
+        /* Calculamos x[i] = (b[i] - temp) / matU[i][i] */
         x[i] = (b[i] - temp) / matU[i][i];
-
     }
 
-    /* Devolvemos el vector solucion. */
+    /* Devolvemos el vector solución */
     return x;   
-
 }
