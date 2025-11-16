@@ -17,7 +17,7 @@ int main(void) {
     const double PI = acos(-1.0);
     double theta = 1.0, s = 0.0, c = 0.0, cpu_time_spent;
     clock_t start, end;
-    int n = 3200, i = 0, j = 0;
+    int n = 0, i = 0, j = 0, repeticions = 100000;
     FILE *fptr;
     fptr = fopen("time.dat", "w");
 
@@ -35,7 +35,7 @@ int main(void) {
 
     else {
 
-        for (theta = 5.0*PI/16.0; theta < PI/2; theta += PI/512) {
+        for (n = 3; n < repeticions; n++) {
 
             /**
              * Calculamos el seno, conseno y creamos la matriz Kn(theta).
