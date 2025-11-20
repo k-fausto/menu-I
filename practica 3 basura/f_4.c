@@ -6,5 +6,5 @@
 double f_3(double x);
 
 double f_4(double x) {
-    return pow(f_3(x), 2);
+    return f_3(x)*f_3(x);
 }
