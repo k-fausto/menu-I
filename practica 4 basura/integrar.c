@@ -29,5 +29,8 @@ int main(void) {
     area = trapezis(n, a, b);
     printf("La integral de f entre a, b es: %15.23le", area);
 
+    /* Para f1, se necesitan 366 intervalos. */
+    /* Para f2, se necesitan 16024 intervalos. */
+
     return 0;
 }
