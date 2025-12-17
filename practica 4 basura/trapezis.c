@@ -12,7 +12,7 @@ double trapezis (int n , double a , double b) {
 
     /* Aplicamos la fórmula del cálculo de las áreas de los trapecios. */
     T += (f(a)/2.0) + (f(b)/2.0);
-    for (i = 1; i < n-1; i++) T += f(a + i*h);
+    for (i = 1; i < n; i++) T += f(a + i*h);
     T *= h;
     return T;
 
